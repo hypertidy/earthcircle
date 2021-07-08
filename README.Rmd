@@ -1,0 +1,47 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# earthcircle
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of earthcircle is to ...
+
+## Installation
+
+You can install the released version of earthcircle from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("earthcircle")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+
+Minimal compare of the tissot ellipses with earth circle (most online stuff confuses these). 
+
+```{r example}
+pts <- expand.grid(seq(-177, 177 ,length.out = 18), seq(-85, 85, length.out = 9))
+eap <- earthcircle(pts, scale = 500500)
+library(tissot)
+ti <- tissot(pts, proj.out = "+proj=robin", proj.in = "+proj=longlat")
+
+ii <- indicatrix(ti, scale = 500500/2)
+plot(ii, xlim = c(1e7, 1.5e7), ylim = c(-1e7, 0))
+lines(earthcircle:::.prj(eap, "+proj=robin"), col ="firebrick")
+```
