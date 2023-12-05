@@ -1,3 +1,4 @@
+#' @importFrom reproj reproj_xy
 .prj <- function(z, proj.out, ..., proj.in = NULL) {
   if (is.null(proj.in)) {
     #message("assuming WGS84 for unprojected angular coordinates")
@@ -7,8 +8,7 @@
   ## NAs come out *zero* aargh
   bad <- is.na(dat[,1L]) | is.na(dat[,2L])
 
-  capture.output(out <- PROJ::proj_trans(dat, proj.out, source = proj.in))
-  out <- do.call(cbind, out)
+  out <- reproj::reproj_xy(z,  proj.out, source = proj.in)
   if (any(bad)) out[bad, ] <- NA
   out
 }
@@ -52,7 +52,7 @@ local_proj <- function(lonlat) {
 #'
 #' @return matrix of circle coordinates (separated by NA rows)
 #' @export
-#'
+#' @importFrom grDevices xy.coords
 #' @examples
 #' x <- earthcircle(cbind(c(0, -50), c(0, -90)), scale = 1e6, from = 0, to = pi)
 #' plot(earthcircle:::.prj(x, "+proj=laea +lat_0=-90"), asp = 1, type = "l")

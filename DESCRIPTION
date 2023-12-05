@@ -1,15 +1,18 @@
 Package: earthcircle
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Create Those Geographic Circles
+Version: 0.0.1
 Authors@R: 
     person(given = "Michael D.",
            family = "Sumner",
            role = c("aut", "cre"),
            email = "mdsumner@gmail.com")
-Description: What the package does (one paragraph).
+Description: Create geographic circles, note this is not the Tissot Inidicatrix see hypertidy/tissot for that.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Language: es
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
+Imports: 
+    grDevices,
+    reproj

@@ -4,7 +4,15 @@
 \alias{earthcircle}
 \title{Generate coordinates of an "earth" circle.}
 \usage{
-earthcircle(x, y = NULL, scale = 1852 * 60, ..., n = 36, from = 0, to = 2 * pi)
+earthcircle(
+  x,
+  y = NULL,
+  scale = 3 * 1852 * 60,
+  ...,
+  n = 36,
+  from = 0,
+  to = 2 * pi
+)
 }
 \arguments{
 \item{x}{longitude of central location for circle, or lon,lat together in matrix, data frame, or list}
@@ -22,12 +30,12 @@ earthcircle(x, y = NULL, scale = 1852 * 60, ..., n = 36, from = 0, to = 2 * pi)
 \item{to}{the maximum radial angle}
 }
 \value{
-
+matrix of circle coordinates (separated by NA rows)
 }
 \description{
 A circle on the ground for every input longitude,latitude.
 }
 \examples{
-x <- earthcircle(cbind(c(0, -50), c(0, -90)))
+x <- earthcircle(cbind(c(0, -50), c(0, -90)), scale = 1e6, from = 0, to = pi)
 plot(earthcircle:::.prj(x, "+proj=laea +lat_0=-90"), asp = 1, type = "l")
 }
